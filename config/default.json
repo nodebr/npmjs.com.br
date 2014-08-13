@@ -1,0 +1,8 @@
+{
+  "port": 8080,
+  "log": true,
+  "mode": "development",
+  "url": "http://registry.npmjs.com.br",
+  "registry": "https://registry.npmjs.org:443",
+  "cache": "./cache"
+}
