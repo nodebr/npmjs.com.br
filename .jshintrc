@@ -3,7 +3,7 @@
   "boss": false,
   "bitwise": true,
   "noempty": true,
-  "latedef": true,
+  "latedef": false,
   "camelcase": false,
   "eqeqeq": true,
   "smarttabs": false,

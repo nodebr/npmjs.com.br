@@ -21,9 +21,8 @@
     "express": "^4.8.3",
     "http-proxy": "^1.2.0",
     "lockfile": "^0.4.2",
-    "mocha": "^1.21.4",
     "request": "^2.40.0",
-    "routes": "^1.2.0",
+    "requi": "^0.2.2",
     "winston": "^0.7.3",
     "xconf": "0.0.2"
   },

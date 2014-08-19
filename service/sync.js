@@ -11,14 +11,14 @@ var path = require('path');
 var finish = function(file, job, cb){
   fs.rename(file + '.tmp', file, function(err){
     if(err){
-      console.error('Failed to rename .tmp sync');
-      console.error(err.stack);
+      log.error('Failed to rename .tmp sync');
+      log.error(err.stack);
     }
 
     lockfile.unlock(file + '.lock', function(err){
       if(err){
-        console.error('Failed to unlock sync');
-        console.error(err.stack);
+        log.error('Failed to unlock sync');
+        log.error(err.stack);
       } else
         log.info('File ' + job.name + ' successfully synced.');
 
@@ -33,13 +33,13 @@ var queue = async.queue(function(job, cb){
 
   lockfile.lock(file + '.lock', function(err){
     if(err){
-      console.error('Failed to get sync lock');
-      console.error(err.stack);
+      log.error('Failed to get sync lock');
+      log.error(err.stack);
       return cb();
     }
 
     if(job.data){
-      fs.writeFile(file, job.data, finish.bind(null, file, job, cb));
+      fs.writeFile(file + '.tmp', job.data, finish.bind(null, file, job, cb));
     } else
       https.get(job.url, function(res){
         if(res.statusCode !== 200)
@@ -54,8 +54,8 @@ var queue = async.queue(function(job, cb){
 
         res.pipe(writer);
       }).on('error', function(err){
-        console.error('Failed sync job');
-        console.error(err.stack);
+        log.error('Failed sync job');
+        log.error(err.stack);
         return cb();
       });
   });
